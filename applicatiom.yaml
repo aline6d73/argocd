@@ -12,7 +12,7 @@ spec:
     ###Last Comming
     targetRevision: HEAD 
     #PATH SOURCE within the repository
-    #path: dev
+    path: .
 
 
   destination: 
