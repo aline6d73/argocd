@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-argo-application
+  namespace: argocd
+
+spec: 
+  project: default
+
+  source: 
+    repoURL: https://gitlab.com/nanuchi/argocd-app-config.git
+    ###Last Comming
+    targetRevision: HEAD 
+    #PATH SOURCE within the repository
+    path: dev
+
+
+  destination: 
+  #internal service name of k8s services 
+  # check the service with kubectl get svc 
+    server: https://kubernetes.default.svc 
+    ##create only if it does not exist
+    namespace:  myapp 
+
+    ## create a sync policy
+
+  syncPolicy:
+    syncOptions :
+    ## ensures that the namespace specified exists in the destination cluster
+    - CreateNamespace=true 
+    
+    #Every 3 minutes pull & apply
+  automated:
+    selfHeal: true
+    prune: true
+
+
