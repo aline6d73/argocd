@@ -30,8 +30,8 @@ spec:
     - CreateNamespace=true 
     
     #Every 3 minutes pull & apply
-  automated:
-    selfHeal: true
-    prune: true
+    automated:
+      selfHeal: true
+      prune: true
 
 
